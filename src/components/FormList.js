@@ -38,7 +38,14 @@ const FormList = () => {
       </Form>
       {thingsToDo &&
         thingsToDo.map((thing) => {
-          return <ThingsToDo key={uuidv4()} thing={thing} />;
+          return (
+            <ThingsToDo
+              key={uuidv4()}
+              thing={thing}
+              thingsToDo={thingsToDo}
+              setThingsToDo={setThingsToDo}
+            />
+          );
         })}
     </div>
   );
