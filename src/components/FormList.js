@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import ThingsToDo from "./ThingsToDo";
 import { v4 as uuidv4 } from "uuid";
 
-const FormList = () => {
+const FormList = ({ user }) => {
   const [thingsToDo, setThingsToDo] = useState([]);
   const formRef = useRef();
 
@@ -21,6 +21,7 @@ const FormList = () => {
 
   return (
     <div className="container">
+      <h1>Bonjour {user.displayName} </h1>
       <Form onSubmit={(e) => addThing(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Tâche à réaliser</Form.Label>
