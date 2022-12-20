@@ -5,6 +5,14 @@ const Signup = () => {
   const signupMail = useRef();
   const signupPassword = useRef();
   const [displayName, setDisplayName] = useState();
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const editErrorMsg = (msg) => {
+    setErrorMsg(msg);
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 3000);
+  };
 
   const Signup = (e) => {
     e.preventDefault();
@@ -13,12 +21,19 @@ const Signup = () => {
         auth,
         signupMail.current.value,
         signupPassword.current.value
-      ).then(async (user) => {
-        await updateProfile(user.user, {
-          displayName,
+      )
+        .then(async (user) => {
+          await updateProfile(user.user, {
+            displayName,
+          });
+          window.location.reload();
+        })
+        .catch((err) => {
+          if (err.code === "auth/email-already-in-use") {
+            editErrorMsg("Un compte avec cette adresse mail est déjà existant");
+          }
+          console.log(err.code);
         });
-        window.location.reload();
-      });
     } catch (err) {
       console.log(err);
     }
@@ -69,6 +84,7 @@ const Signup = () => {
           Submit
         </button>
       </form>
+      {errorMsg}
     </div>
   );
 };

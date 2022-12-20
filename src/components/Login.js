@@ -1,10 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../utils/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const loginMail = useRef();
   const loginPassword = useRef();
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const editErrorMsg = (msg) => {
+    setErrorMsg(msg);
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 3000);
+  };
 
   const login = (e) => {
     e.preventDefault();
@@ -13,7 +21,9 @@ const Login = () => {
         auth,
         loginMail.current.value,
         loginPassword.current.value
-      );
+      ).catch((error) => {
+        editErrorMsg("Adresse mail ou mot de passe invalide");
+      });
     } catch (err) {
       console.log(err);
     }
@@ -21,7 +31,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>S'inscrire</h2>
+      <h2>Se conencter</h2>
       <form onSubmit={(e) => login(e)}>
         <div className="mb-3">
           <label className="form-label">Adresse mail</label>
@@ -52,6 +62,7 @@ const Login = () => {
           Submit
         </button>
       </form>
+      {errorMsg}
     </div>
   );
 };
