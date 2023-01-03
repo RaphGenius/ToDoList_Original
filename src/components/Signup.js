@@ -41,7 +41,7 @@ const Signup = () => {
 
   return (
     <div>
-      <h2>S'inscrire</h2>
+      <h2>Inscription</h2>
       <form onSubmit={(e) => Signup(e)}>
         <div className="mb-3">
           <label className="form-label">Pseudo</label>

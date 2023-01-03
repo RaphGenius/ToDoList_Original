@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const FormList = ({ user }) => {
   const [thingsToDo, setThingsToDo] = useState([]);
+  console.log(user);
   const formRef = useRef();
 
   const addThing = (e) => {

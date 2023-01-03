@@ -5,11 +5,11 @@ import Signup from "./Signup";
 const ModelsConnect = () => {
   const [login, setLogin] = useState(false);
   return (
-    <div className="container ">
-      <h1>Modal</h1>
+    <div className="container d-flex">
       <div>
-        <button onClick={() => setLogin(true)}>Se connecter</button>
-        <button onClick={() => setLogin(false)}>S'inscrire</button>
+        <button onClick={() => setLogin(!login)}>
+          {login ? "S'inscrire" : "Se connecter"}
+        </button>
       </div>
       <div className="container">{login ? <Login /> : <Signup />}</div>
     </div>

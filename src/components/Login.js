@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Se conencter</h2>
+      <h2>Connexion</h2>
       <form onSubmit={(e) => login(e)}>
         <div className="mb-3">
           <label className="form-label">Adresse mail</label>
